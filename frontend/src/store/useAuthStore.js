@@ -4,9 +4,11 @@ import toast from "react-hot-toast";
 
 export const useAuthStore = create((set) => ({
   // this are the default values which are set to the hooks
+
+  // this variables are the state variable
   authUser: null,
   isSigningUp: false,
-  isLogging: false,
+  isLoggingIn: false,
   isUpdatingProfile: false,
   isCheckingAuth: true,
 
@@ -31,6 +33,19 @@ export const useAuthStore = create((set) => ({
       toast.error(error.response.data.message);
     } finally {
       set({ isSigningUp: false });
+    }
+  },
+
+  login: async (data) => {
+    set({ isLoggingIn: true });
+    try {
+      const res = await axiosInstance.post("/auth/login", data);
+      set({ authUser: res.data });
+      toast.success("Logged in successfully");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isLoggingIn: false });
     }
   },
 
