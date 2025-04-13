@@ -4,6 +4,7 @@ import express from "express"; // FOR USING IMPORT STATEMENT, MAKE TYPE=MODULE I
 import dotenv from "dotenv";
 
 import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
 import { connectDb } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/message", messageRoutes);
 
 app.get("/", (req, res) => {
   res.send("App is working");
