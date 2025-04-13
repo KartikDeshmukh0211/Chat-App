@@ -2,6 +2,7 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import genToken from "../utils/genToken.js";
+import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -41,15 +42,13 @@ export const login = async (req, res) => {
     res.status(400).json({ message: "Invalid Credentials" });
   }
   genToken(user._id, res);
-  res
-    .status(200)
-    .json({
-      message: "Login successfulf",
-      _id: user._id,
-      fullName: user.fullName,
-      email: user.email,
-      profilePic: user.profilePic,
-    });
+  res.status(200).json({
+    message: "Login successfulf",
+    _id: user._id,
+    fullName: user.fullName,
+    email: user.email,
+    profilePic: user.profilePic,
+  });
 };
 
 export const logout = (req, res) => {
@@ -57,6 +56,23 @@ export const logout = (req, res) => {
   res.status(200).json({ message: "Logout successfulf" });
 };
 
-export const updateProfile = (req, res) => {
-  
-}
+export const updateProfile = async (req, res) => {
+  const { profilePic } = req.body;
+  const userId = req.user._id;
+
+  if (!profilePic) {
+    res.status(400).json({ message: "profile pic is required" });
+  }
+
+  const response = await cloudinary.uploader.upload(profilePic);
+  const updateUser = await User.findByIdAndUpdate(
+    userId,
+    { profilePic: response.secure_url },
+    { new: true }
+  );
+  res.send(200).json(updateUser);
+};
+
+export const checkAuth = (req, res) => {
+  res.status(200).json(req.user);
+};
