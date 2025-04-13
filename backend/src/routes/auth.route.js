@@ -14,7 +14,7 @@ const router = express.Router();
 router.post("/signup", wrapAsync(signup));
 router.post("/login", wrapAsync(login));
 router.post("/logout", wrapAsync(logout));
-router.put("/update-profle", validateUser, wrapAsync(updateProfile));
+router.put("/update-profile", validateUser, wrapAsync(updateProfile));
 router.get("/check", validateUser, checkAuth);
 
 export default router;

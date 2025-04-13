@@ -13,8 +13,12 @@ const app = express();
 dotenv.config();
 let port = process.env.PORT;
 
-app.use(express.urlencoded({ extended: true })); // for reading the body of request when comed via post route.app
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true })); // for reading the body of request when comed via post route.app
+// app.use(express.json());
+
+app.use(express.json({ limit: '10mb' })); // or more
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
 app.use(cookieParser());
 app.use(
   cors({
