@@ -28,7 +28,7 @@ function App() {
   }
 
 
-  // the data-theme is used to select the theme for out page and this is possible due to daisy ui
+  // the data-theme is used to select the theme for our page and this is possible due to daisy ui
   return (
     <div data-theme={theme}>
       <Navbar />
