@@ -12,15 +12,16 @@ export const getUsersForSidebar = async (req, res) => {
 
 export const getMessages = async (req, res) => {
   const { id: othersId } = req.params;
+  // console.log(othersId);
   const myId = req.user._id;
 
-  const messages = await User.find({
+  const messages = await Message.find({
     $or: [
       { senderId: myId, receiverId: othersId },
       { senderId: othersId, receiverId: myId },
     ],
   });
-
+  // console.log(messages);
   res.status(200).json(messages);
 };
 
@@ -46,5 +47,5 @@ export const sendMessage = async (req, res) => {
 
   // real time chat functionality will be build here using socket.io
 
-  res.status(201).json(messages);
+  res.status(201).json(message);
 };
