@@ -2,12 +2,12 @@ import { useChatStore } from "../store/useChatStore";
 import { useEffect, useRef } from "react";
 
 import ChatHeader from "./ChatHeader";
-import MessageSkeleton from "./skeletons/MessageSkelton"
 import MessageInput from "./MessageInput";
+import MessageSkeleton from "./skeletons/MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 import { formatMessageTime } from "../lib/utils";
 
-export default function ChatContainer(){
+const ChatContainer = () => {
   const {
     messages,
     getMessages,
@@ -25,12 +25,7 @@ export default function ChatContainer(){
     subscribeToMessages();
 
     return () => unsubscribeFromMessages();
-  }, [
-    selectedUser._id,
-    getMessages,
-    subscribeToMessages,
-    unsubscribeFromMessages,
-  ]);
+  }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
@@ -56,9 +51,7 @@ export default function ChatContainer(){
         {messages.map((message) => (
           <div
             key={message._id}
-            className={`chat ${
-              message.senderId === authUser._id ? "chat-end" : "chat-start"
-            }`}
+            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
             ref={messageEndRef}
           >
             <div className=" chat-image avatar">
@@ -95,4 +88,5 @@ export default function ChatContainer(){
       <MessageInput />
     </div>
   );
-}
+};
+export default ChatContainer;

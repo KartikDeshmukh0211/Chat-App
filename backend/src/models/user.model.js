@@ -21,11 +21,9 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
   },
-  {
-    timestamps: true, // by adding this the mongoose will add cratedAt and updatedAt field by itself in the user schema.....
-  }
+  { timestamps: true }
 );
 
-const User = new mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

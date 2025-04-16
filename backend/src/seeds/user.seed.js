@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import { connectDb } from "../lib/db.js";
+import { connectDB } from "../lib/db.js";
 import User from "../models/user.model.js";
 
 config();
@@ -102,7 +102,7 @@ const seedUsers = [
 
 const seedDatabase = async () => {
   try {
-    await connectDb();
+    await connectDB();
 
     await User.insertMany(seedUsers);
     console.log("Database seeded successfully");

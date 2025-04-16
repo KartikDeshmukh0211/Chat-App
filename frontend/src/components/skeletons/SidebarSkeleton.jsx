@@ -1,6 +1,6 @@
 import { Users } from "lucide-react";
 
-export default function SidebarSkeleton() {
+const SidebarSkeleton = () => {
   // Create 8 skeleton items
   const skeletonContacts = Array(8).fill(null);
 
@@ -36,4 +36,6 @@ export default function SidebarSkeleton() {
       </div>
     </aside>
   );
-}
+};
+
+export default SidebarSkeleton;

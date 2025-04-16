@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
-  withCredentials: true, // IT WILL SEND COOKIES IN EVERY SINGLE REQUEST
+  baseURL: import.meta.env.MODE === "development" ? "http://localhost:5001/api" : "/api",
+  withCredentials: true,
 });

@@ -3,12 +3,9 @@ import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 
 export const useAuthStore = create((set, get) => ({
-  // this are the default values which are set to the hooks
-
-  // this variables are the state variable
   authUser: null,
   isSigningUp: false,
   isLoggingIn: false,
