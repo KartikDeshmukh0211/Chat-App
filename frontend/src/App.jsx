@@ -1,10 +1,10 @@
 import Navbar from "./components/Navbar";
 
-import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import SignUpPage from "./pages/SignUpPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
-import SignUpPage from "./pages/SignUpPage";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
