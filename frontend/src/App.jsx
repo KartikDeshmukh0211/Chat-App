@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
+import SignupPage from "./pages/SignupPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
-const App = () => {
+export default function App() {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
 
@@ -44,7 +44,7 @@ const App = () => {
         />
         <Route
           path="/signup"
-          element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
+          element={!authUser ? <SignupPage /> : <Navigate to="/" />}
         />
         <Route
           path="/login"
@@ -60,5 +60,4 @@ const App = () => {
       <Toaster />
     </div>
   );
-};
-export default App;
+}
