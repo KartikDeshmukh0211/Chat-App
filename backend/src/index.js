@@ -8,16 +8,17 @@ import messageRoutes from "./routes/message.route.js";
 import { connectDb } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server } from "./lib/socket.js";
 
-const app = express();
+// const app = express();
 dotenv.config();
 let port = process.env.PORT;
 
 // app.use(express.urlencoded({ extended: true })); // for reading the body of request when comed via post route.app
 // app.use(express.json());
 
-app.use(express.json({ limit: '10mb' })); // or more
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json({ limit: "10mb" })); // or more
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 app.use(cookieParser());
 app.use(
@@ -34,7 +35,7 @@ app.get("/", (req, res) => {
   res.send("App is working");
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`server is running at the port ${port}`);
   connectDb();
 });
